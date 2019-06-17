@@ -1,0 +1,47 @@
+version: '3.3'
+
+services:
+
+  # Database
+  mysql:
+    image: mysql:5.7
+    container_name: gatsby_mysql
+    volumes:
+      - ./docker/db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: gatsby
+      MYSQL_DATABASE: gatsby
+      MYSQL_USER: gatsby
+      MYSQL_PASSWORD: gatsby
+    restart: always
+
+  # PhpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: gatsby_phpmyadmin
+    ports:
+      - 8086:80
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: gatsby
+
+  # Wordpress 
+  wordpress:
+    depends_on:
+      - mysql
+    image: wordpress:latest
+    container_name: gatsby_wordpress
+    ports:
+      - "8000:80"
+    volumes:
+      - ./wordpress:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_USER: gatsby
+      WORDPRESS_DB_PASSWORD: gatsby
+      WORDPRESS_DB_NAME: gatsby
+    restart: always
+volumes:
+  db_data: {}
