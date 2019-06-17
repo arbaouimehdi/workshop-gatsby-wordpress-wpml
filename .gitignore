@@ -1,0 +1,13 @@
+# General
+.DS_Store
+
+# Docker
+/docker/db-data
+
+# Exlude all WordPress Files and Folder except "your-theme" folder
+/wordpress/*
+!/wordpress/wp-content/
+/wordpress/wp-content/*
+!/wordpress/wp-content/themes/
+/wordpress/wp-content/themes/*
+!/wordpress/wp-content/themes/your-theme/
