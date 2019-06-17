@@ -42,6 +42,7 @@ services:
       WORDPRESS_DB_USER: gatsby
       WORDPRESS_DB_PASSWORD: gatsby
       WORDPRESS_DB_NAME: gatsby
+    privileged: true
     restart: always
 volumes:
   db_data: {}
