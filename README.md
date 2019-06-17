@@ -17,3 +17,11 @@
 - Start `gatby new gatsby-wordpress` to create a new gatsby project.
 - From the `gatsby-wordpress` folder run the command `gatsby develop --host=0.0.0.0 --port=8888` this command include different port `8888`, because we already set up wordpress to use the `8000`.
 - Access to the Gatsby website from [http://localhost:8888](http://localhost:8888)
+
+## Setup Gatby for Wordpress
+
+- Install Gatsby Source wordpress `npm install --save gatsby-source-wordpress`
+- Update `gatsby-config.js` with the new `gatsby-source-wordpress` [Config](https://gist.github.com/freemh/09df4426b7e6c74172921f786b39ffa9)
+- Change `baseUrl: gatsbyjsexamplewordpress.wordpress.com` to `baseUrl: localhost:8000` to connect Gatsby to the WordPress Blog.
+- Stop `gatsby develop` if it's already running, and run `gatsby develop --host=0.0.0.0 --port=8888` again to fetch all the posts, pages, media, acf fields...
+- If as an example you want to access to the endopoints of the list of the posts, follow this URL [http://localhost:8000/wp-json/wp/v2/posts](http://localhost:8000/wp-json/wp/v2/posts)
