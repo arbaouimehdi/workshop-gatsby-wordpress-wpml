@@ -25,3 +25,23 @@
 - Change `baseUrl: gatsbyjsexamplewordpress.wordpress.com` to `baseUrl: localhost:8000` to connect Gatsby to the WordPress Blog.
 - Stop `gatsby develop` if it's already running, and run `gatsby develop --host=0.0.0.0 --port=8888` again to fetch all the posts, pages, media, acf fields...
 - If as an example you want to access to the endopoints of the list of the posts, follow this URL [http://localhost:8000/wp-json/wp/v2/posts](http://localhost:8000/wp-json/wp/v2/posts)
+
+## Get the Posts Lists
+
+- Install [FakerPress](https://wordpress.org/plugins/fakerpress/) Plugin to generate some dummy Content.
+- Get to the **FakerPress** from the WordPress Admin Dashboard, click on **Posts** and generate 10 posts, or any other number you want.
+- Rerun again `gatsby develop --host=0.0.0.0 --port=8888` to rebuild everything, because you add some new posts
+- View [GraphiQL](http://localhost:8888/___graphql), which it's an in-browser IDE, to explore the site Data.
+- Add this query on GraphiQL to access to the posts list: 
+  ```
+  {
+    allWordpressPost {
+      edges {
+        node {
+          id
+          title
+        }
+      }
+    }
+  }
+  ```
