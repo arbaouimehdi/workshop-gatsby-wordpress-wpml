@@ -1,37 +1,14 @@
 import React from "react"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import { Link } from "gatsby"
 
-import { StaticQuery, graphql } from "gatsby"
+import Layout from "../components/layout"
+import Image from "../components/image"
+import SEO from "../components/seo"
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <StaticQuery
-      query={graphql`
-        {
-          allWordpressPost {
-            edges {
-              node {
-                id
-                title
-                content
-              }
-            }
-          }
-        }
-      `}
-      render={({ allWordpressPost }) => (
-        <div>
-          {allWordpressPost.edges.map(post => (
-            <div key={post.node.id}>
-              <h1>{post.node.title}</h1>
-              <div dangerouslySetInnerHTML={{ __html: post.node.content }} />
-            </div>
-          ))}
-        </div>
-      )}
-    />
+    <Link to="/posts/">Wordpress Posts</Link>
   </Layout>
 )
 
