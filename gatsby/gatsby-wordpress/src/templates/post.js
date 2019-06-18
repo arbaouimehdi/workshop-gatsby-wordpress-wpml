@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropType from 'prop-types';
 import { graphql } from 'gatsby';

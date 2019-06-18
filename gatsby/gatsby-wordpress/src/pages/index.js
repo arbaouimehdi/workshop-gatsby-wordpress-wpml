@@ -8,8 +8,12 @@ import SEO from "../components/seo"
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <Link to="/posts/">Wordpress Posts</Link>
+    <ul>
+      <li><Link to="/posts/">Posts</Link></li>
+      <li><Link to="/pages/">Pages</Link></li>
+    </ul>
   </Layout>
 )
 
 export default IndexPage
+
