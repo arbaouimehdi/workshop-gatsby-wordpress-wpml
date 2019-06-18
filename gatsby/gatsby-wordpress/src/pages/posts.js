@@ -2,9 +2,9 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql, Link } from "gatsby"
 
-const IndexPage = () => (
+const IndexPosts = () => (
   <Layout>
     <SEO title="Home" />
     <StaticQuery
@@ -16,6 +16,7 @@ const IndexPage = () => (
                 id
                 title
                 content
+                slug
               }
             }
           }
@@ -25,7 +26,9 @@ const IndexPage = () => (
         <div>
           {allWordpressPost.edges.map(post => (
             <div key={post.node.id}>
-              <h1>{post.node.title}</h1>
+              <h1>
+                <Link to={`blog/${post.node.slug}`}>{post.node.title}</Link>
+              </h1>
               <div dangerouslySetInnerHTML={{ __html: post.node.content }} />
             </div>
           ))}
@@ -35,4 +38,4 @@ const IndexPage = () => (
   </Layout>
 )
 
-export default IndexPage
+export default IndexPosts
