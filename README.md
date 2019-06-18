@@ -45,3 +45,9 @@
     }
   }
   ```
+
+## Create Posts and Pages automatically
+
+- Pages and Posts will be created automatically after each build.
+- The file responsible for generating posts and pages is `gatsby-node.js`
+- The generated Posts and Pages has templates `src/templates/post.js` and `src/templates/page.js`
