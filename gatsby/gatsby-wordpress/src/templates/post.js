@@ -1,12 +1,13 @@
-import React from 'react';
-import PropType from 'prop-types';
-import { graphql } from 'gatsby';
+import React from "react"
+import PropType from "prop-types"
+import { graphql } from "gatsby"
 
-import Layout from '../components/layout';
+import Layout from "../components/layout"
 
-const PostTemplate = (props) => {
-
-  const { data: { wordpressPost: post } } = props;
+const PostTemplate = props => {
+  const {
+    data: { wordpressPost: post },
+  } = props
 
   return (
     <Layout>
@@ -18,15 +19,15 @@ const PostTemplate = (props) => {
 
 PostTemplate.propTypes = {
   data: PropType.shape({}).isRequired,
-};
+}
 
-export default PostTemplate;
+export default PostTemplate
 
 export const pageQuery = graphql`
   query($id: String!) {
-        wordpressPost(id: {eq: $id }) {
-        title
-        content
-      }
+    wordpressPost(id: { eq: $id }) {
+      title
+      content
     }
-  `;
+  }
+`

@@ -9,11 +9,14 @@ const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
     <ul>
-      <li><Link to="/posts/">Posts</Link></li>
-      <li><Link to="/pages/">Pages</Link></li>
+      <li>
+        <Link to="/posts/">Posts</Link>
+      </li>
+      <li>
+        <Link to="/pages/">Pages</Link>
+      </li>
     </ul>
   </Layout>
 )
 
 export default IndexPage
-

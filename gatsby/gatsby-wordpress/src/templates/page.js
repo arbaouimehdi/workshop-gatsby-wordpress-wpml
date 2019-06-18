@@ -1,10 +1,11 @@
-import React from 'react';
-import PropType from 'prop-types';
-import Layout from '../components/layout';
+import React from "react"
+import PropType from "prop-types"
+import Layout from "../components/layout"
 
-const PageTemplate = (props) => {
-
-  const { data: { wordpressPage } } = props;
+const PageTemplate = props => {
+  const {
+    data: { wordpressPage },
+  } = props
 
   return (
     <Layout>
@@ -12,16 +13,15 @@ const PageTemplate = (props) => {
       <div dangerouslySetInnerHTML={{ __html: wordpressPage.content }} />
     </Layout>
   )
-
 }
 
-export default PageTemplate;
+export default PageTemplate
 
 export const pageQuery = graphql`
   query($id: String!) {
-    wordpressPage(id: {eq: $id }) {
+    wordpressPage(id: { eq: $id }) {
       title
       content
     }
   }
-`;
+`
