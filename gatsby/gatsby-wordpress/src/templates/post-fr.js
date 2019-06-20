@@ -4,30 +4,38 @@ import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 
-const PostTemplate = props => {
+const PostTemplateFR = props => {
   const {
-    data: { wordpressPost: post },
+    data: {
+      wordpressPost: { wpml_translations },
+    },
   } = props
+
+  let post = wpml_translations.reduce(post => post)
 
   return (
     <Layout uri={props.location.pathname}>
-      <h1>{post.title}</h1>
+      <h1>{post.post_title}</h1>
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
     </Layout>
   )
 }
 
-PostTemplate.propTypes = {
+PostTemplateFR.propTypes = {
   data: PropType.shape({}).isRequired,
 }
 
-export default PostTemplate
+export default PostTemplateFR
 
 export const pageQuery = graphql`
   query($id: String!) {
     wordpressPost(id: { eq: $id }) {
-      title
-      content
+      wpml_translations {
+        wordpress_id
+        post_title
+        content
+        path
+      }
     }
   }
 `

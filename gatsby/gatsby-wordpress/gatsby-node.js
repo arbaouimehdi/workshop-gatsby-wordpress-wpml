@@ -91,9 +91,10 @@ exports.createPages = async ({ graphql, actions }) => {
       translatedPost.map(field => {
         // console.log(field.path)
         createPage({
-          path: `fr/${field.path}`,
+          path: `fr${field.path}`,
           component: slash(postTemplateFR),
           context: {
+            id: edge.node.id,
             wordpress_id: field.wordpress_id,
           },
         })

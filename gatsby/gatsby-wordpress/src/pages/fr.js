@@ -4,8 +4,8 @@ import SEO from "../components/seo"
 
 import { StaticQuery, graphql, Link } from "gatsby"
 
-const IndexPosts = () => (
-  <Layout>
+const IndexPosts = props => (
+  <Layout uri={props.location.pathname}>
     <SEO title="Home" />
     <StaticQuery
       query={graphql`
@@ -29,10 +29,11 @@ const IndexPosts = () => (
         <div>
           {edges.map(({ node: { wpml_translations } }) => {
             let post = wpml_translations.reduce(post => post)
-
             return (
-              <div>
-                <h1>{post.post_title}</h1>
+              <div key={post.wordpress_id}>
+                <h1>
+                  <Link to={`fr/${post.path}`}>{post.post_title}</Link>
+                </h1>
                 <div dangerouslySetInnerHTML={{ __html: post.content }} />
               </div>
             )
