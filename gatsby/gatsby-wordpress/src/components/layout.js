@@ -7,10 +7,21 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql, Link } from "gatsby"
+import styled from "styled-components"
 
 import Header from "./header"
 import "./layout.css"
+
+const Footer = styled.footer`
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px dotted #ccc;
+
+  a {
+    margin-right: 12px;
+  }
+`
 
 const Layout = ({ children, uri }) => {
   return (
@@ -36,7 +47,10 @@ const Layout = ({ children, uri }) => {
             }}
           >
             <main>{children}</main>
-            <footer></footer>
+            <Footer>
+              <Link to="/">Blog</Link>
+              <Link to="/pages">Pages</Link>
+            </Footer>
           </div>
         </>
       )}

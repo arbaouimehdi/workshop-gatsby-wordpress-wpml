@@ -10,10 +10,9 @@ const PageTemplate = props => {
   } = props
 
   return (
-    <Layout>
+    <Layout uri={props.location.pathname}>
       <h1>{wordpressPage.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: wordpressPage.content }} />
-      {/* Gallery */}
       <div>
         <h4>Gallery</h4>
         <Img
