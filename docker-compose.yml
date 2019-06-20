@@ -1,7 +1,6 @@
 version: '3.3'
 
 services:
-
   # Database
   mysql:
     image: mysql:5.7
@@ -27,16 +26,17 @@ services:
       PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: gatsby
 
-  # Wordpress 
+  # Wordpress
   wordpress:
     depends_on:
       - mysql
     image: wordpress:latest
     container_name: gatsby_wordpress
     ports:
-      - "8000:80"
+      - '8000:80'
     volumes:
       - ./wordpress:/var/www/html
+      - ./docker/config/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     environment:
       WORDPRESS_DB_HOST: mysql:3306
       WORDPRESS_DB_USER: gatsby

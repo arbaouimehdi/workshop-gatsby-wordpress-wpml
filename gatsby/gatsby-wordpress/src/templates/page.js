@@ -16,16 +16,9 @@ const PageTemplate = props => {
       {/* Gallery */}
       <div>
         <h4>Gallery</h4>
-        {isObject(wordpressPage.acf.gt_gallery) ? (
-          wordpressPage.acf.gt_gallery.map(gallery => (
-            <Img
-              key={gallery.id}
-              fixed={gallery.localFile.childImageSharp.fixed}
-            />
-          ))
-        ) : (
-          <p>No gallery found</p>
-        )}
+        <Img
+          fixed={wordpressPage.acf.gt_image.localFile.childImageSharp.fixed}
+        />
       </div>
     </Layout>
   )
@@ -39,7 +32,7 @@ export const pageQuery = graphql`
       title
       content
       acf {
-        gt_gallery {
+        gt_image {
           id
           localFile {
             childImageSharp {

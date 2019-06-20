@@ -1,21 +1,41 @@
 import React from "react"
-import { Link } from "gatsby"
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
+import { StaticQuery, graphql, Link } from "gatsby"
+
+const IndexPosts = props => (
+  <Layout uri={props.location.pathname}>
     <SEO title="Home" />
-    <ul>
-      <li>
-        <Link to="/posts/">Posts</Link>
-      </li>
-      <li>
-        <Link to="/pages/">Pages</Link>
-      </li>
-    </ul>
+    <StaticQuery
+      query={graphql`
+        {
+          allWordpressPost {
+            edges {
+              node {
+                id
+                title
+                content
+                path
+              }
+            }
+          }
+        }
+      `}
+      render={({ allWordpressPost }) => (
+        <div>
+          {allWordpressPost.edges.map(post => (
+            <div key={post.node.id}>
+              <h1>
+                <Link to={post.node.path}>{post.node.title}</Link>
+              </h1>
+              <div dangerouslySetInnerHTML={{ __html: post.node.content }} />
+            </div>
+          ))}
+        </div>
+      )}
+    />
   </Layout>
 )
 
-export default IndexPage
+export default IndexPosts
