@@ -1,5 +1,6 @@
 const path = require(`path`)
 const slash = require(`slash`)
+const isObject = require(`util`)
 
 // Implement the Gatsby API “createPages”. This is
 // called after the Gatsby bootstrap is finished so you have
@@ -34,6 +35,12 @@ exports.createPages = async ({ graphql, actions }) => {
             status
             template
             format
+            wpml_current_locale
+            wpml_translations {
+              wordpress_id
+              path
+              href
+            }
           }
         }
       }
@@ -72,11 +79,27 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 
   const postTemplate = path.resolve(`./src/templates/post.js`)
+  const postTemplateFR = path.resolve(`./src/templates/post-fr.js`)
   // We want to create a detailed page for each post node.
   // The path field stems from the original WordPress link
   // and we use it for the slug to preserve url structure.
   // The Post ID is prefixed with 'POST_'
   allWordpressPost.edges.forEach(edge => {
+    if (edge.node.wpml_translations.length > 0) {
+      let translatedPost = edge.node.wpml_translations
+
+      translatedPost.map(field => {
+        // console.log(field.path)
+        createPage({
+          path: `fr/${field.path}`,
+          component: slash(postTemplateFR),
+          context: {
+            wordpress_id: field.wordpress_id,
+          },
+        })
+      })
+    }
+
     createPage({
       path: edge.node.path,
       component: slash(postTemplate),
