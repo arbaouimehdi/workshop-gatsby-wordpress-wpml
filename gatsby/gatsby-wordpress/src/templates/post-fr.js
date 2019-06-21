@@ -14,7 +14,7 @@ const PostTemplateFR = props => {
   let post = wpml_translations.reduce(post => post)
 
   return (
-    <Layout uri={props.location.pathname}>
+    <Layout lang="fr">
       <h1>{post.post_title}</h1>
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
     </Layout>

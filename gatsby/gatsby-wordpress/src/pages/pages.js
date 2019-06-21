@@ -4,7 +4,7 @@ import SEO from "../components/seo"
 
 import { StaticQuery, graphql, Link } from "gatsby"
 
-const IndexPages = () => (
+const IndexPages = props => (
   <Layout>
     <SEO title="Home" />
     <StaticQuery

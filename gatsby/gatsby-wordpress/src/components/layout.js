@@ -7,12 +7,23 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql, Link } from "gatsby"
+import styled from "styled-components"
 
 import Header from "./header"
 import "./layout.css"
 
-const Layout = ({ children, uri }) => {
+const Footer = styled.footer`
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px dotted #ccc;
+
+  a {
+    margin-right: 12px;
+  }
+`
+
+const Layout = ({ children, lang }) => {
   return (
     <StaticQuery
       query={graphql`
@@ -26,7 +37,7 @@ const Layout = ({ children, uri }) => {
       `}
       render={data => (
         <>
-          <Header siteTitle={data.site.siteMetadata.title} uri={uri} />
+          <Header siteTitle={data.site.siteMetadata.title} lang={lang} />
           <div
             style={{
               margin: `0 auto`,
@@ -36,7 +47,9 @@ const Layout = ({ children, uri }) => {
             }}
           >
             <main>{children}</main>
-            <footer></footer>
+            <Footer>
+              <Link to="/sample-page/">Sample Page</Link>
+            </Footer>
           </div>
         </>
       )}
@@ -46,7 +59,6 @@ const Layout = ({ children, uri }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  uri: PropTypes.node.isRequired,
 }
 
 export default Layout

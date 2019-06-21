@@ -1,4 +1,4 @@
-version: '3.3'
+version: "3.3"
 
 services:
   # Database
@@ -33,10 +33,11 @@ services:
     image: wordpress:latest
     container_name: gatsby_wordpress
     ports:
-      - '8000:80'
+      - "8000:80"
     volumes:
       - ./wordpress:/var/www/html
       - ./docker/config/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - ./docker/wordpress/plugins/wpml-rest-api-master/wpml-rest-api.php:/var/www/html/wp-content/plugins/wpml-rest-api-master/wpml-rest-api.php
     environment:
       WORDPRESS_DB_HOST: mysql:3306
       WORDPRESS_DB_USER: gatsby
