@@ -9,10 +9,6 @@ const HeaderStyle = styled.div`
   margin-bottom: 1.45rem;
   text-align: center;
 
-  :root {
-    --color-primary: rebeccapurple;
-  }
-
   div {
     margin: 0 auto;
     maxwidth: 960;
@@ -36,18 +32,29 @@ const HeaderStyle = styled.div`
       margin-right: 10px;
       padding: 5px;
       color: rgba(255, 255, 255, 0.7);
-      ${props =>
-        props.uri.includes("/fssr") &&
-        css`
-          background: #fff;
-          color: rebeccapurple;
-        `}
+      ${props => {
+        if (props.lang === "fr") {
+          return css`
+            &:first-child {
+              background: #fff;
+              color: rebeccapurple;
+            }
+          `
+        } else if (props.lang === "en") {
+          return css`
+            &:nth-child(2) {
+              background: #fff;
+              color: rebeccapurple;
+            }
+          `
+        }
+      }}
     }
   }
 `
 
-const Header = ({ siteTitle, uri }) => (
-  <HeaderStyle uri={uri}>
+const Header = ({ siteTitle, lang }) => (
+  <HeaderStyle lang={lang}>
     <h1>
       <Link to="/">{siteTitle}</Link>
     </h1>
@@ -60,8 +67,8 @@ const Header = ({ siteTitle, uri }) => (
 )
 
 Header.propTypes = {
-  siteTitle: PropTypes.string,
-  uri: PropTypes.string,
+  siteTitle: PropTypes.string.isRequired,
+  lang: PropTypes.string,
 }
 
 Header.defaultProps = {

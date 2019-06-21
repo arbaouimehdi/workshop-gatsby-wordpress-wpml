@@ -10,11 +10,11 @@ const PageTemplate = props => {
   } = props
 
   return (
-    <Layout uri={props.location.pathname}>
+    <Layout>
       <h1>{wordpressPage.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: wordpressPage.content }} />
       <div>
-        <h4>Gallery</h4>
+        <h4>ACF Field</h4>
         <Img
           fixed={wordpressPage.acf.gt_image.localFile.childImageSharp.fixed}
         />

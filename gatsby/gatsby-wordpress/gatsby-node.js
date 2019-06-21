@@ -35,7 +35,6 @@ exports.createPages = async ({ graphql, actions }) => {
             status
             template
             format
-            wpml_current_locale
             wpml_translations {
               wordpress_id
               path

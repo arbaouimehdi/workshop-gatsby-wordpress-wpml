@@ -23,7 +23,7 @@ const Footer = styled.footer`
   }
 `
 
-const Layout = ({ children, uri }) => {
+const Layout = ({ children, lang }) => {
   return (
     <StaticQuery
       query={graphql`
@@ -37,7 +37,7 @@ const Layout = ({ children, uri }) => {
       `}
       render={data => (
         <>
-          <Header siteTitle={data.site.siteMetadata.title} uri={uri} />
+          <Header siteTitle={data.site.siteMetadata.title} lang={lang} />
           <div
             style={{
               margin: `0 auto`,
@@ -48,8 +48,7 @@ const Layout = ({ children, uri }) => {
           >
             <main>{children}</main>
             <Footer>
-              <Link to="/">Blog</Link>
-              <Link to="/pages">Pages</Link>
+              <Link to="/sample-page/">Sample Page</Link>
             </Footer>
           </div>
         </>
@@ -60,7 +59,6 @@ const Layout = ({ children, uri }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  uri: PropTypes.node.isRequired,
 }
 
 export default Layout

@@ -10,7 +10,7 @@ const PostTemplate = props => {
   } = props
 
   return (
-    <Layout uri={props.location.pathname}>
+    <Layout lang="en">
       <h1>{post.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
     </Layout>
